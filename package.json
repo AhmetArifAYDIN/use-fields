@@ -1,0 +1,65 @@
+{
+  "name": "@yatiyo/use-fields",
+  "version": "0.1.0",
+  "description": "Field-first local state for readable React components.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhmetArifAYDIN/use-fields.git"
+  },
+  "keywords": [
+    "react",
+    "hook",
+    "state",
+    "local-state",
+    "usestate",
+    "object-state",
+    "patch-state",
+    "reset-state",
+    "fields",
+    "form",
+    "typescript"
+  ],
+  "license": "MIT",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AhmetArifAYDIN/use-fields/issues"
+  },
+  "homepage": "https://github.com/AhmetArifAYDIN/use-fields#readme",
+  "peerDependencies": {
+    "react": "^18 || ^19"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@testing-library/react": "^16.3.0",
+    "jsdom": "^26.1.0",
+    "react": "^19.2.7",
+    "tsup": "^8.5.1",
+    "typescript": "^6.0.3",
+    "vitest": "^2.1.8"
+  }
+}
