@@ -10,6 +10,8 @@ interface SearchState {
   page: number;
 }
 
+type Theme = "dark" | "light";
+
 const initialFromInterface: SearchState = {
   filters: {
     query: "",
@@ -122,3 +124,22 @@ useFields({
   // @ts-expect-error function-valued top-level fields are not supported
   onSubmit: () => {},
 });
+
+const [unionState, unionSet] = useFields<{ theme: Theme }>({
+  theme: "dark",
+});
+
+unionState.theme satisfies Theme;
+unionSet.theme("light");
+
+// @ts-expect-error theme should stay a strict string union
+unionSet.theme("abc");
+
+const typedInitialState: { theme: Theme } = {
+  theme: "dark",
+};
+
+const [, typedUnionSet] = useFields(typedInitialState);
+
+// @ts-expect-error typed variable input should also preserve the union
+typedUnionSet.theme("abc");

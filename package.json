@@ -1,6 +1,6 @@
 {
   "name": "@yatiyo/use-fields",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Field-first local state for readable React components.",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

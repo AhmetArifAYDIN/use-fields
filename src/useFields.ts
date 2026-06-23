@@ -13,24 +13,24 @@ type WidenLiteral<T, TWide> = TWide extends T
     : TWide;
 
 type NormalizePrimitive<T> =
-  T extends string
+  [T] extends [string]
     ? WidenLiteral<T, string>
-    : T extends number
+    : [T] extends [number]
       ? WidenLiteral<T, number>
-      : T extends boolean
+      : [T] extends [boolean]
         ? WidenLiteral<T, boolean>
-        : T extends bigint
+        : [T] extends [bigint]
           ? WidenLiteral<T, bigint>
-          : T extends symbol
+          : [T] extends [symbol]
             ? WidenLiteral<T, symbol>
             : T;
 
 type NormalizeFieldValue<T> =
-  T extends Primitive
+  [T] extends [Primitive]
     ? NormalizePrimitive<T>
-    : T extends readonly (infer U)[]
+    : [T] extends [readonly (infer U)[]]
       ? NormalizeFieldValue<U>[]
-      : T extends object
+      : [T] extends [object]
         ? {
             [K in keyof T]: NormalizeFieldValue<T[K]>;
           }
